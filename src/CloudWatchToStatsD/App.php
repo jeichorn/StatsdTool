@@ -87,6 +87,7 @@ Class App
         $data = [];
         foreach($metrics as $name => $dimensions)
         {
+            $this->log->info("Trying to get data for $name");
             foreach($dimensions as $dimension)
             {
                 list($namespace, $metric) = explode('.', $name);
@@ -103,16 +104,18 @@ Class App
                     'Unit'       => $this->config->metricUnit($metric),
                 ]);
 
+                $stat_name = str_replace('/','.',$namespace)
+                             .'.'.$this->config->mapIdentifier($dimension['Value'])
+                             .'.'.$metric;
+
+
                 // statsd is only for realtime, so lets only take the newest item,
                 // we keep a log of what was the last timestamp for each metric
 
+                $this->log->debug("Found ".count($stats['Datapoints'])." for $stat_name");
                 foreach($stats['Datapoints'] as $point)
                 {
                     $ts = strtotime($point['Timestamp']);
-
-                    $stat_name = str_replace('/','.',$namespace)
-                                 .'.'.$this->config->mapIdentifier($dimension['Value'])
-                                 .'.'.$metric;
 
                     $last = $this->lastStat->get($stat_name);
 
