@@ -1,5 +1,5 @@
 <?php
-namespace CloudWatchToStatsD;
+namespace StatsdTool;
 
 use Aws\CloudWatch\CloudWatchClient;
 use Aws\Ec2\Ec2Client;

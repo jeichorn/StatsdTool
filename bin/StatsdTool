@@ -6,9 +6,9 @@ require_once __DIR__.'/../conf/config.php';
 date_default_timezone_set('UTC');
 
 use Symfony\Component\Console\Application;
-use CloudWatchToStatsD\PollCommand;
-use CloudWatchToStatsD\Log;
+use StatsdTool\CloudWatchCommand;
+use StatsdTool\Log;
 
 $application = new Application();
-$application->add(new PollCommand(new Log()));
+$application->add(new CloudWatchCommand(new Log()));
 $application->run();

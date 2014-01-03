@@ -8,7 +8,7 @@
         }
     ],
     "autoload": {
-        "psr-0": {  "CloudWatchToStatsD": "src/" }
+        "psr-0": {  "StatsdTool": "src/" }
     },
     "require": {
         "domnikl/statsd": "*",

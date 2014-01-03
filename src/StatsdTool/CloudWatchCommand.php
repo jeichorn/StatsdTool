@@ -1,5 +1,5 @@
 <?php
-namespace CloudWatchToStatsD;
+namespace StatsdTool;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class PollCommand extends Command
+class CloudWatchCommand extends Command
 {
     protected $log;
 
@@ -20,8 +20,8 @@ class PollCommand extends Command
     protected function configure()
     {
         $this
-            ->setName('poll')
-            ->setDescription('Do a single run against cloudwatch')
+            ->setName('cloudwatch')
+            ->setDescription('Grab the newest data from cloudwatch and send it to statsd')
         ;
     }
 

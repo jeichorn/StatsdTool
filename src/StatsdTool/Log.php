@@ -1,5 +1,5 @@
 <?php
-namespace CloudWatchToStatsD;
+namespace StatsdTool;
 
 class Log
 {
