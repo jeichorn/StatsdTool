@@ -100,8 +100,7 @@ Class App
                     'StartTime'  => $this->startTime(strtotime('- '.\Config::$PollInterval, $now), \Config::$Period),
                     'EndTime'    => $now,
                     'Period'     => \Config::$Period,
-                    'Statistics' => $statistics,
-                    'Unit'       => $this->config->metricUnit($metric),
+                    'Statistics' => $statistics
                 ]);
 
                 $stat_name = str_replace('/','.',$namespace)
@@ -126,7 +125,7 @@ Class App
                     foreach($statistics as $stat)
                     {
                         $this->lastStat->set($stat_name, $ts);
-                        $data[$stat_name] = $point[$stat];
+                        $data[$stat_name] = $this->config->transform($metric, $point[$stat]);
                     }
                 }
             }
@@ -139,7 +138,7 @@ Class App
     protected function getMetrics()
     {
         $iterator = $this->cloudwatch->getIterator('ListMetrics', [
-//            'Namespace' => 'AWS/EC2',
+//            'Namespace' => 'AWS/ELB',
         ]);
 
         $metrics = [];
@@ -164,7 +163,6 @@ Class App
                 $metrics[$name][] = ['Name' => $dimension, 'Value' => $identifier];
             }
         }
-
         return $metrics;
 
     }

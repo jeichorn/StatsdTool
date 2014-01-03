@@ -10,7 +10,7 @@ class StatsConfig
     {
         if (is_null($config_path))
         {
-            $config_path = __DIR__.'/../../conf/stats.php';
+            $config_path = __DIR__.'/../../conf/cloudwatch.php';
         }
 
         $this->config = include $config_path;
@@ -28,14 +28,6 @@ class StatsConfig
             return $this->config['Statistics'][$metric];
 
         return ['Average'];
-    }
-
-    public function metricUnit($metric)
-    {
-        if (isset($this->config['Unit'][$metric]))
-            return $this->config['Unit'][$metric];
-
-        return 'None';
     }
 
     public function shouldUseMetric($namespace, $metric, $identifier)
@@ -63,5 +55,16 @@ class StatsConfig
             return $this->map[$identifier];
 
         return $identifier;
+    }
+
+    public function transform($metric, $value)
+    {
+        if (isset($this->config['Transform'][$metric]))
+        {
+            $function = $this->config['Transform'][$metric];
+            $value = $function($value);
+        }
+
+        return $value;
     }
 }
