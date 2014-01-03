@@ -1,0 +1,21 @@
+{
+    "name": "CloudWatchToStatsD",
+    "description": "Script for polling cloudwatch and sending the resulting data to statsd",
+    "authors": [
+        {
+            "name": "Joshua Eichorn",
+            "email": "josh@bluga.net"
+        }
+    ],
+    "autoload": {
+        "psr-0": {  "CloudWatchToStatsD": "src/" }
+    },
+    "require": {
+        "domnikl/statsd": "*",
+        "aws/aws-sdk-php": "2.*",
+        "symfony/console": "~2.3"
+    },
+    "config": {
+        "bin-dir": "bin/"
+    }
+}
