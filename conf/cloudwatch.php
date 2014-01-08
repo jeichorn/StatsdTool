@@ -6,6 +6,7 @@ return [
         "LoadBalancerName" => true,
     ],
     'Transform' => [
+        // change Latency to miliseconds we need an int
         'Latency' => function($in)
             {
                 return (int)($in * 1000);
