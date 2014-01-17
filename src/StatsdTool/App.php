@@ -146,7 +146,7 @@ Class App
     protected function getMetrics()
     {
         $iterator = $this->cloudwatch->getIterator('ListMetrics', [
-            'Namespace' => 'AWS/RDS',
+ //           'Namespace' => 'AWS/RDS',
         ]);
 
         $metrics = [];
