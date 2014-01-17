@@ -8,10 +8,12 @@ date_default_timezone_set('UTC');
 use Symfony\Component\Console\Application;
 use StatsdTool\CloudWatchCommand;
 use StatsdTool\NginxCommand;
+use StatsdTool\MysqlCommand;
 use StatsdTool\Log;
 
 $log = new Log();
 $application = new Application();
 $application->add(new CloudWatchCommand($log));
 $application->add(new NginxCommand($log));
+$application->add(new MysqlCommand($log));
 $application->run();

@@ -6,4 +6,21 @@ class Config
         'secret' => '',
         'region' => '',
     );
+
+    public static $statsd = [
+        'host' => 'localhost',
+        'port' =>  8125,
+    ];
+
+    public static $mysql = [
+        'name' => [
+            'host' => 'localhost',
+            'user' => 'user',
+            'password' => 'password',
+        ]
+    ];
+
+    public static $PollInterval = '10minutes';
+
+    public static $Period = 60;
 }

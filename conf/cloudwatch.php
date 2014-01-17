@@ -4,6 +4,7 @@ return [
     'Dimensions' => [
         "InstanceId" => true,
         "LoadBalancerName" => true,
+        "DBInstanceIdentifier" => true,
     ],
     'Transform' => [
         // change Latency to miliseconds we need an int
@@ -30,24 +31,35 @@ return [
         // metrics to pull for every machine
         "__global" => [
             'CPUUtilization' => true,
-            'DiskReadOps' => true,
-            'DiskWriteOps' => true,
-            'DiskReadBytes' => true,
-            'DiskWriteBytes' => true,
-            'NetworkIn' => true,
-            'NetworkOut' => true,
+#            'DiskReadOps' => true,
+#            'DiskWriteOps' => true,
+#            'DiskReadBytes' => true,
+#            'DiskWriteBytes' => true,
+#            'NetworkIn' => true,
+#            'NetworkOut' => true,
         ],
         // a per machine metric, you can use nice machine names instanceid will be looked up
-        'web100.pagelydev.com' => [
-            'StatusCheckFailed' => true
+#        'web100.pagelydev.com' => [
+#            'StatusCheckFailed' => true
+#        ],
+    ],
+#    'AWS/ELB' => [
+#        'Cloud' => [
+#            'Latency' => true,
+#            'RequestCount' => true,
+#            'HTTPCode_Backend_5XX',
+#            'HTTPCode_Backend_2XX'
+#        ]
+#    ],
+    'AWS/RDS' => [
+        "__global" => [
+            'CPUUtilization' => true,
+#            'DiskReadOps' => true,
+#            'DiskWriteOps' => true,
+#            'DiskReadBytes' => true,
+#            'DiskWriteBytes' => true,
+#            'NetworkIn' => true,
+#            'NetworkOut' => true,
         ],
     ],
-    'AWS/ELB' => [
-        'Cloud' => [
-            'Latency' => true,
-            'RequestCount' => true,
-            'HTTPCode_Backend_5XX',
-            'HTTPCode_Backend_2XX'
-        ]
-    ]
 ];

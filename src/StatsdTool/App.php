@@ -3,6 +3,7 @@ namespace StatsdTool;
 
 use Aws\CloudWatch\CloudWatchClient;
 use Aws\Ec2\Ec2Client;
+use Aws\Rds\RdsClient;
 
 Class App
 {
@@ -39,6 +40,7 @@ Class App
 
         // needed for metadata
         $this->ec2 = Ec2Client::factory(\Config::$aws);
+        $this->rds = RdsClient::factory(\Config::$aws);
 
         // where we are sending data
         $connection = new \Domnikl\Statsd\Connection\Socket(\Config::$statsd['host'], \Config::$statsd['port']);
@@ -76,6 +78,12 @@ Class App
                     $this->instances[$instance['InstanceId']] = $instance['InstanceId'];
                 }
             }
+        }
+
+        $result = $this->rds->describeDBInstances();
+        foreach($result['DBInstances'] as $instance)
+        {
+            $this->instances[$instance['DBInstanceIdentifier']] = $instance['DBInstanceIdentifier'];
         }
     }
 
@@ -138,7 +146,7 @@ Class App
     protected function getMetrics()
     {
         $iterator = $this->cloudwatch->getIterator('ListMetrics', [
-//            'Namespace' => 'AWS/ELB',
+            'Namespace' => 'AWS/RDS',
         ]);
 
         $metrics = [];

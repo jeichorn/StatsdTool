@@ -1,0 +1,30 @@
+<?php
+// defines which mysql stats from SHOW STATUS to import
+// http://dev.mysql.com/doc/refman/5.6/en/server-status-variables.html
+return [
+    'Bytes_received' => true,
+    'Bytes_sent' => true,
+    'Com_delete' => true,
+    'Com_delete_multi' => true,
+    'Com_insert' => true,
+    'Com_insert_select' => true,
+    'Com_replace' => true,
+    'Com_replace_select' => true,
+    'Com_select' => true,
+    'Com_update' => true,
+    'Com_update_multi' => true,
+    'Com_truncate' => true,
+    'Connections' => true,
+    'Innodb_num_open_files' => true,
+    'Qcache_free_blocks' => true,
+    'Qcache_free_memory' => true,
+    'Qcache_hits' => true,
+    'Qcache_inserts' => true,
+    'Qcache_lowmem_prunes' => true,
+    'Qcache_queries_in_cache' => true,
+    'Qcache_total_blocks' => true,
+    'Queries' => true,
+    'Select_scan' => true,
+    'Slow_queries' => true,
+    'Threads_running' => true,
+];
