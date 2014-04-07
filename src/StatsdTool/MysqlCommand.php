@@ -36,6 +36,10 @@ class MysqlCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $server = $input->getArgument('name');
+        if (!isset(\Config::$mysql[$server]))
+        {
+            throw new \Exception("Mysql config for $server not found");
+        }
         $mysql = new mysqli(\Config::$mysql[$server]['host'], \Config::$mysql[$server]['user'], \Config::$mysql[$server]['password']);
 
         $query = "SHOW GLOBAL STATUS";
