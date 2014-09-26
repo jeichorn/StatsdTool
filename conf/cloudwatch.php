@@ -16,6 +16,7 @@ return [
     // Possible Values  SampleCount | Average | Sum | Minimum | Maximum 
     'Statistics' => [
         'CPUUtilization' => ['Maximum'],
+        'FreeableMemory' => ['Average'],
         'StatusCheckFailed' => ['Sum'],
         'DiskWriteOps' => ['Average'],
         'DiskReadOps' => ['Average'],
@@ -54,12 +55,14 @@ return [
     'AWS/RDS' => [
         "__global" => [
             'CPUUtilization' => true,
+            'FreeStorageSpace' => true,
+            'FreeableMemory' => true,
 #            'DiskReadOps' => true,
 #            'DiskWriteOps' => true,
 #            'DiskReadBytes' => true,
 #            'DiskWriteBytes' => true,
-#            'NetworkIn' => true,
-#            'NetworkOut' => true,
+            'NetworkIn' => true,
+            'NetworkOut' => true,
         ],
     ],
 ];
