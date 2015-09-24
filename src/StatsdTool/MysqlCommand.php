@@ -19,7 +19,7 @@ class MysqlCommand extends Command
         $this->log = $log;
 
          // where we are sending data
-        $connection = new \Domnikl\Statsd\Connection\Socket(\Config::$statsd['host'], \Config::$statsd['port']);
+        $connection = new \Domnikl\Statsd\Connection\TcpSocket(\Config::$statsd['host'], \Config::$statsd['port']);
         $this->statsd = new \Domnikl\Statsd\Client($connection);
 
     }
